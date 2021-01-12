@@ -1,0 +1,67 @@
+package project.models;
+
+import java.util.Objects;
+
+public class Manufacturer {
+    private Long id;
+    private String name;
+    private String country;
+
+    public Manufacturer(String name, String country) {
+        this.name = name;
+        this.country = country;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Manufacturer)) {
+            return false;
+        }
+        Manufacturer that = (Manufacturer) o;
+        return Objects.equals(id, that.id)
+                && Objects.equals(name, that.name)
+                && Objects.equals(country, that.country);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, country);
+    }
+
+    @Override
+    public String toString() {
+        return "Manufacturer{"
+                + "id=" + id
+                + ", name='"
+                + name + '\''
+                + ", country='" + country + '\''
+                + '}';
+    }
+}
