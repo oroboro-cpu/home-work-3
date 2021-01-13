@@ -11,7 +11,7 @@ import project.service.DriverService;
 import project.service.ManufacturerService;
 
 public class Main {
-    private static Injector injector = Injector.getInstance("project");
+    private static final Injector injector = Injector.getInstance("project");
 
     public static void main(String[] args) {
         ManufacturerService manufacturerService =
@@ -64,9 +64,10 @@ public class Main {
         carService.delete(car2.getId());
         System.out.println(carService.getAll());
 
-        carService.addDriverToCar(new Driver("Alex", "4444-rrrr"), car1);
-        carService.getAllByDriver(driver1.getId());
-        carService.removeDriverFromCar(driver2, car2);
+        carService.addDriverToCar(driverService.create(new Driver("Alex", "4444-rrrr")), car1);
+        System.out.println(carService.getAll());
+        System.out.println(carService.getAllByDriver(driver1.getId()));
+        carService.removeDriverFromCar(driver1, car1);
         System.out.println(carService.getAll());
     }
 }
