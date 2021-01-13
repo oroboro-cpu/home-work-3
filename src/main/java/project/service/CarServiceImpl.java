@@ -2,6 +2,7 @@ package project.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import project.dao.CarDao;
 import project.lib.Inject;
 import project.lib.Service;
@@ -19,7 +20,7 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public Car get(Long id) {
+    public Optional<Car> get(Long id) {
         return carDao.get(id);
     }
 
@@ -49,11 +50,7 @@ public class CarServiceImpl implements CarService {
     @Override
     public void removeDriverFromCar(Driver driver, Car car) {
         List<Driver> driverList = new ArrayList<>(car.getDrivers());
-        Driver driverToRemove = car.getDrivers().stream()
-                .filter(d -> d.equals(driver))
-                .findFirst()
-                .orElseThrow();
-        driverList.remove(driverToRemove);
+        driverList.remove(driver);
         car.setDrivers(driverList);
         update(car);
     }

@@ -1,6 +1,7 @@
 package project.dao;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.IntStream;
 import project.db.Storage;
 import project.lib.Dao;
@@ -15,11 +16,10 @@ public class DriverDaoImpl implements DriverDao {
     }
 
     @Override
-    public Driver get(Long id) {
+    public Optional<Driver> get(Long id) {
         return Storage.drivers.stream()
                 .filter(d -> d.getId().equals(id))
-                .findFirst()
-                .get();
+                .findFirst();
     }
 
     @Override

@@ -1,13 +1,14 @@
 package project.service;
 
 import java.util.List;
+import java.util.Optional;
 import project.models.Car;
 import project.models.Driver;
 
 public interface CarService {
     Car create(Car car);
 
-    Car get(Long id);
+    Optional<Car> get(Long id);
 
     List<Car> getAll();
 

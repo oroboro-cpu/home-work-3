@@ -1,12 +1,12 @@
 package project.dao;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import project.db.Storage;
 import project.lib.Dao;
 import project.models.Car;
-import project.models.Driver;
 
 @Dao
 public class CarDaoImpl implements CarDao {
@@ -17,11 +17,10 @@ public class CarDaoImpl implements CarDao {
     }
 
     @Override
-    public Car get(Long id) {
+    public Optional<Car> get(Long id) {
         return Storage.cars.stream()
                 .filter(c -> c.getId().equals(id))
-                .findFirst()
-                .get();
+                .findFirst();
     }
 
     @Override
@@ -45,10 +44,7 @@ public class CarDaoImpl implements CarDao {
     @Override
     public List<Car> getAllByDriver(Long driverId) {
         return getAll().stream()
-                .filter(c -> c.getDrivers().stream()
-                        .map(Driver::getId)
-                        .collect(Collectors.toList())
-                        .contains(driverId))
+                .filter(c -> c.getDrivers().stream().anyMatch(d -> d.getId().equals(driverId)))
                 .collect(Collectors.toList());
     }
 }
