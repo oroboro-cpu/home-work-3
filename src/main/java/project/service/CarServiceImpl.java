@@ -2,7 +2,6 @@ package project.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import project.dao.CarDao;
 import project.lib.Inject;
 import project.lib.Service;
@@ -20,8 +19,8 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public Optional<Car> get(Long id) {
-        return carDao.get(id);
+    public Car get(Long id) {
+        return carDao.get(id).get();
     }
 
     @Override

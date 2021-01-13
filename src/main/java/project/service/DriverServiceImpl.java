@@ -1,7 +1,6 @@
 package project.service;
 
 import java.util.List;
-import java.util.Optional;
 import project.dao.DriverDao;
 import project.lib.Inject;
 import project.lib.Service;
@@ -18,8 +17,8 @@ public class DriverServiceImpl implements DriverService {
     }
 
     @Override
-    public Optional<Driver> get(Long id) {
-        return driverDao.get(id);
+    public Driver get(Long id) {
+        return driverDao.get(id).get();
     }
 
     @Override
