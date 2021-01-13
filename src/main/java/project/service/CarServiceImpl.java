@@ -2,7 +2,6 @@ package project.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 import project.dao.CarDao;
 import project.lib.Inject;
 import project.lib.Service;
@@ -61,11 +60,6 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public List<Car> getAllByDriver(Long driverId) {
-        return getAll().stream()
-                .filter(c -> c.getDrivers().stream()
-                        .map(Driver::getId)
-                        .collect(Collectors.toList())
-                        .contains(driverId))
-                .collect(Collectors.toList());
+        return carDao.getAllByDriver(driverId);
     }
 }

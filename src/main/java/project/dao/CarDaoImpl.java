@@ -1,10 +1,12 @@
 package project.dao;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import project.db.Storage;
 import project.lib.Dao;
 import project.models.Car;
+import project.models.Driver;
 
 @Dao
 public class CarDaoImpl implements CarDao {
@@ -38,5 +40,15 @@ public class CarDaoImpl implements CarDao {
     @Override
     public boolean delete(Long id) {
         return Storage.cars.removeIf(c -> c.getId().equals(id));
+    }
+
+    @Override
+    public List<Car> getAllByDriver(Long driverId) {
+        return getAll().stream()
+                .filter(c -> c.getDrivers().stream()
+                        .map(Driver::getId)
+                        .collect(Collectors.toList())
+                        .contains(driverId))
+                .collect(Collectors.toList());
     }
 }
