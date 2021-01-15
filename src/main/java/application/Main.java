@@ -19,15 +19,20 @@ public class Main {
         Manufacturer manufacturer1 = new Manufacturer("Volga", "Russia");
         Manufacturer manufacturer2 = new Manufacturer("Daewoo", "Korea");
         Manufacturer manufacturer3 = new Manufacturer("Fiat", "Italy");
+        Manufacturer manufacturer4 = new Manufacturer("BMW", "Germany");
+        Manufacturer manufacturer5 = new Manufacturer("Suzuki", "Japan");
 
         manufacturerService.create(manufacturer1);
         manufacturerService.create(manufacturer2);
         manufacturerService.create(manufacturer3);
+        manufacturerService.create(manufacturer4);
+        manufacturerService.create(manufacturer5);
         System.out.println(manufacturerService.getAll());
 
         manufacturer1.setCountry("Ukraine");
         manufacturerService.update(manufacturer1);
         manufacturerService.delete(3L);
+        manufacturerService.delete(4L);
         System.out.println(manufacturerService.getAll());
 
         Driver driver1 = new Driver("Bob", "1111-qqqq");
