@@ -61,6 +61,7 @@ public class Main {
         carService.create(car2);
         carService.create(car3);
         carService.create(car4);
+
         System.out.println(carService.getAll());
         car1.setName("Ford");
         carService.update(car1);
@@ -69,6 +70,5 @@ public class Main {
         System.out.println(carService.getAll());
         carService.removeDriverFromCar(driver1, car1);
         System.out.println(carService.getAll());
-        System.out.println(carService.getAllByDriver(1L));
     }
 }
