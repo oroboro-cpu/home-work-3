@@ -41,8 +41,8 @@ public class CarDaoJdbc implements CarDao {
     @Override
     public Optional<Car> get(Long id) {
         String selectQuery = "SELECT * FROM cars c "
-                + "INNER JOIN manufacturers m ON m.manufacturer_id=c.manufacturer_id "
-                + "WHERE c.deleted=FALSE AND c.car_id=?";
+                + "INNER JOIN manufacturers m ON m.id=c.manufacturer_id "
+                + "WHERE c.deleted=FALSE AND c.id=?";
         Car car = null;
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement selectById = connection.prepareStatement(selectQuery)) {

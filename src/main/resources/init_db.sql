@@ -21,7 +21,7 @@ CREATE TABLE `taxi_service`.`cars` (
         INDEX `cars_manufacturers_fk_index` (`manufacturer_id` ASC) VISIBLE,
         CONSTRAINT `cars_manufacturers_fk`
         FOREIGN KEY (`manufacturer_id`)
-        REFERENCES `taxi_service`.`manufacturers` (`manufacturer_id`)
+        REFERENCES `taxi_service`.`manufacturers` (`id`)
         ON DELETE NO ACTION
         ON UPDATE NO ACTION);
 CREATE TABLE `taxi_service`.`cars_drivers` (
