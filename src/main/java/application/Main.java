@@ -1,7 +1,5 @@
 package application;
 
-import java.util.ArrayList;
-import java.util.List;
 import project.lib.Injector;
 import project.models.Car;
 import project.models.Driver;
@@ -38,18 +36,15 @@ public class Main {
         Driver driver1 = new Driver("Bob", "1111-qqqq");
         Driver driver2 = new Driver("Alice", "2222-wwww");
         Driver driver3 = new Driver("John", "3333-eeee");
-
-        List<Driver> driverList1 = new ArrayList<>();
-        List<Driver> driverList2 = new ArrayList<>();
-        driverList1.add(driver1);
-        driverList1.add(driver2);
-        driverList2.add(driver3);
-        driverList2.add(driver2);
+        Driver driver4 = new Driver("Bill", "4444-rrrr");
+        Driver driver5 = new Driver("Rax", "5555-tttt");
 
         DriverService driverService = (DriverService) injector.getInstance(DriverService.class);
         driverService.create(driver1);
         driverService.create(driver2);
         driverService.create(driver3);
+        driverService.create(driver4);
+        driverService.create(driver5);
         System.out.println(driverService.getAll());
 
         driverService.delete(driver1.getId());
@@ -60,20 +55,21 @@ public class Main {
         CarService carService = (CarService) injector.getInstance(CarService.class);
         Car car1 = new Car("BMW", manufacturer1);
         Car car2 = new Car("Toyota", manufacturer2);
-        car1.setDrivers(driverList1);
-        car2.setDrivers(driverList2);
+        Car car3 = new Car("Lexus", manufacturer3);
+        Car car4 = new Car("Nissan", manufacturer4);
+        Car car5 = new Car("Volga", manufacturer5);
         carService.create(car1);
         carService.create(car2);
-        System.out.println(carService.getAll());
+        carService.create(car3);
+        carService.create(car4);
+        carService.create(car5);
 
-        car1.setName("Lexus");
+        System.out.println(carService.getAll());
+        car1.setName("Ford");
         carService.update(car1);
         carService.delete(car2.getId());
+        carService.addDriverToCar(driverService.create(new Driver("Alex", "6666-oooo")), car1);
         System.out.println(carService.getAll());
-
-        carService.addDriverToCar(driverService.create(new Driver("Alex", "4444-rrrr")), car1);
-        System.out.println(carService.getAll());
-        System.out.println(carService.getAllByDriver(driver1.getId()));
         carService.removeDriverFromCar(driver1, car1);
         System.out.println(carService.getAll());
     }
