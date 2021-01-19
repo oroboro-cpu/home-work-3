@@ -46,18 +46,21 @@ public class CarDaoJdbc implements CarDao {
                 + "INNER JOIN cars_drivers cd ON cd.car_id=c.id "
                 + "INNER JOIN drivers d ON d.driver_id=cd.driver_id "
                 + "WHERE c.deleted=FALSE AND d.deleted=FALSE AND c.car_id=?";
+        Car car = null;
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement selectById = connection.prepareStatement(selectQuery)) {
             selectById.setLong(1, id);
             ResultSet resultSet = selectById.executeQuery();
-            Car car = null;
             if (resultSet.next()) {
                 car = getCarFromResultSet(resultSet);
             }
-            return Optional.of(car);
         } catch (SQLException e) {
             throw new DataProcessingException("Can't get car with id " + id, e);
         }
+        if (car != null) {
+            car.setDrivers(getDriverByCarId(id));
+        }
+        return Optional.ofNullable(car);
     }
 
     @Override
@@ -78,7 +81,7 @@ public class CarDaoJdbc implements CarDao {
             throw new DataProcessingException("Can't get all cars", e);
         }
         for (Car car : cars) {
-            car.setDrivers(getDriverById(car.getId()));
+            car.setDrivers(getDriverByCarId(car.getId()));
         }
         return cars;
     }
@@ -103,7 +106,7 @@ public class CarDaoJdbc implements CarDao {
             throw new DataProcessingException("Can't get cars by driver id: " + driverId, ex);
         }
         for (Car car : cars) {
-            car.setDrivers(getDriverById(car.getId()));
+            car.setDrivers(getDriverByCarId(car.getId()));
         }
         return cars;
     }
@@ -196,7 +199,7 @@ public class CarDaoJdbc implements CarDao {
         }
     }
 
-    private List<Driver> getDriverById(Long id) {
+    private List<Driver> getDriverByCarId(Long id) {
         String selectQuery = "SELECT * FROM cars_drivers cd"
                 + " INNER JOIN drivers d ON cd.driver_id = d.driver_id"
                 + " WHERE cd.car_id = ? AND d.deleted = false";
