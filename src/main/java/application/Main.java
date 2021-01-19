@@ -57,10 +57,12 @@ public class Main {
         Car car2 = new Car("Toyota", manufacturer2);
         Car car3 = new Car("Lexus", manufacturer3);
         Car car4 = new Car("Nissan", manufacturer4);
+        Car car5 = new Car("Volga", manufacturer5);
         carService.create(car1);
         carService.create(car2);
         carService.create(car3);
         carService.create(car4);
+        carService.create(car5);
 
         System.out.println(carService.getAll());
         car1.setName("Ford");
