@@ -11,7 +11,7 @@ import project.models.Driver;
 import project.service.DriverService;
 
 public class GetAllDriversController extends HttpServlet {
-    public static final Injector injector = Injector.getInstance("project");
+    private static final Injector injector = Injector.getInstance("project");
     private DriverService driverService = (DriverService)
             injector.getInstance(DriverService.class);
 

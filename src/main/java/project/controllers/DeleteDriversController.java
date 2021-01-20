@@ -9,7 +9,7 @@ import project.lib.Injector;
 import project.service.DriverService;
 
 public class DeleteDriversController extends HttpServlet {
-    public static final Injector injector = Injector.getInstance("project");
+    private static final Injector injector = Injector.getInstance("project");
     private final DriverService driverService = (DriverService)
             injector.getInstance(DriverService.class);
 

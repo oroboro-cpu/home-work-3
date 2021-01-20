@@ -10,8 +10,8 @@ import project.models.Manufacturer;
 import project.service.ManufacturerService;
 
 public class CreateManufacturersController extends HttpServlet {
-    Injector injector = Injector.getInstance("project");
-    ManufacturerService manufacturerService = (ManufacturerService)
+    private static final Injector injector = Injector.getInstance("project");
+    private final ManufacturerService manufacturerService = (ManufacturerService)
             injector.getInstance(ManufacturerService.class);
 
     @Override

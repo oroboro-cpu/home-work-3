@@ -9,7 +9,7 @@ import project.lib.Injector;
 import project.service.CarService;
 
 public class DeleteCarsController extends HttpServlet {
-    public static final Injector injector = Injector.getInstance("project");
+    private static final Injector injector = Injector.getInstance("project");
     private final CarService carService = (CarService)
             injector.getInstance(CarService.class);
 

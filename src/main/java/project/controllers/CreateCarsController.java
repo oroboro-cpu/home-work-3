@@ -12,9 +12,9 @@ import project.service.CarService;
 import project.service.ManufacturerService;
 
 public class CreateCarsController extends HttpServlet {
-    Injector injector = Injector.getInstance("project");
-    CarService carService = (CarService) injector.getInstance(CarService.class);
-    ManufacturerService manufacturerService = (ManufacturerService)
+    private static final Injector injector = Injector.getInstance("project");
+    private final CarService carService = (CarService) injector.getInstance(CarService.class);
+    private final ManufacturerService manufacturerService = (ManufacturerService)
             injector.getInstance(ManufacturerService.class);
 
     @Override

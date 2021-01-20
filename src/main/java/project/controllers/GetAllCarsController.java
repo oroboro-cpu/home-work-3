@@ -11,7 +11,7 @@ import project.models.Car;
 import project.service.CarService;
 
 public class GetAllCarsController extends HttpServlet {
-    public static final Injector injector = Injector.getInstance("project");
+    private static final Injector injector = Injector.getInstance("project");
     private final CarService carService = (CarService)
             injector.getInstance(CarService.class);
 

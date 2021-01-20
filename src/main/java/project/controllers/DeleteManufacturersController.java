@@ -9,7 +9,7 @@ import project.lib.Injector;
 import project.service.ManufacturerService;
 
 public class DeleteManufacturersController extends HttpServlet {
-    public static final Injector injector = Injector.getInstance("project");
+    private static final Injector injector = Injector.getInstance("project");
     private final ManufacturerService manufacturerService = (ManufacturerService)
             injector.getInstance(ManufacturerService.class);
 

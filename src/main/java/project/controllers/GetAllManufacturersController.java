@@ -11,8 +11,8 @@ import project.models.Manufacturer;
 import project.service.ManufacturerService;
 
 public class GetAllManufacturersController extends HttpServlet {
-    public static final Injector injector = Injector.getInstance("project");
-    private ManufacturerService manufacturerService = (ManufacturerService)
+    private static final Injector injector = Injector.getInstance("project");
+    private final ManufacturerService manufacturerService = (ManufacturerService)
             injector.getInstance(ManufacturerService.class);
 
     @Override
