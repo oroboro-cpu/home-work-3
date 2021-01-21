@@ -28,11 +28,11 @@
                     <c:out value="${car.drivers}"/>
                 </td>
                 <td>
-                    <a href="${pageContext.request.contextPath}/car/delete?id=${car.id}">Delete</a>
+                    <a href="${pageContext.request.contextPath}/cars/delete?id=${car.id}">Delete</a>
                 </td>
             </tr>
         </c:forEach>
     </table>
-    <a href="${pageContext.request.contextPath}/car/create">Create cars</a>
+    <a href="${pageContext.request.contextPath}/cars/create">Create cars</a>
 </body>
 </html>

@@ -19,6 +19,6 @@ public class DeleteDriverController extends HttpServlet {
         String driverId = req.getParameter("id");
         Long id = Long.parseLong(driverId);
         driverService.delete(id);
-        resp.sendRedirect(req.getContextPath() + "/all");
+        resp.sendRedirect(req.getContextPath() + "/drivers");
     }
 }

@@ -33,6 +33,6 @@ public class CreateCarController extends HttpServlet {
         car.setName(name);
         car.setManufacturer(manufacturer);
         carService.create(car);
-        resp.sendRedirect(req.getContextPath() + "/all");
+        resp.sendRedirect(req.getContextPath() + "/cars");
     }
 }
