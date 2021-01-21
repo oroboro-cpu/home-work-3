@@ -19,16 +19,16 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>allDrivers</servlet-name>
-        <url-pattern>/drivers</url-pattern>
+        <url-pattern>/driver/all</url-pattern>
     </servlet-mapping>
 
     <servlet>
         <servlet-name>createDrivers</servlet-name>
-        <servlet-class>project.controllers.CreateDriversController</servlet-class>
+        <servlet-class>project.controllers.CreateDriverController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>createDrivers</servlet-name>
-        <url-pattern>/drivers/create</url-pattern>
+        <url-pattern>/driver/create</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -37,16 +37,16 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>allManufacturers</servlet-name>
-        <url-pattern>/manufacturers</url-pattern>
+        <url-pattern>/manufacturer/all</url-pattern>
     </servlet-mapping>
 
     <servlet>
         <servlet-name>createManufacturers</servlet-name>
-        <servlet-class>project.controllers.CreateManufacturersController</servlet-class>
+        <servlet-class>project.controllers.CreateManufacturerController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>createManufacturers</servlet-name>
-        <url-pattern>/manufacturers/create</url-pattern>
+        <url-pattern>/manufacturer/create</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -55,16 +55,16 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>allCars</servlet-name>
-        <url-pattern>/cars</url-pattern>
+        <url-pattern>/car/all</url-pattern>
     </servlet-mapping>
 
     <servlet>
         <servlet-name>createCars</servlet-name>
-        <servlet-class>project.controllers.CreateCarsController</servlet-class>
+        <servlet-class>project.controllers.CreateCarController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>createCars</servlet-name>
-        <url-pattern>/cars/create</url-pattern>
+        <url-pattern>/car/create</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -73,33 +73,33 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>addDriver</servlet-name>
-        <url-pattern>/addDriver</url-pattern>
+        <url-pattern>/car/drivers/add</url-pattern>
     </servlet-mapping>
 
     <servlet>
         <servlet-name>deleteManufacturer</servlet-name>
-        <servlet-class>project.controllers.DeleteManufacturersController</servlet-class>
+        <servlet-class>project.controllers.DeleteManufacturerController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>deleteManufacturer</servlet-name>
-        <url-pattern>/manufacturers/delete</url-pattern>
+        <url-pattern>/manufacturer/delete</url-pattern>
     </servlet-mapping>
 
     <servlet>
         <servlet-name>deleteDrivers</servlet-name>
-        <servlet-class>project.controllers.DeleteDriversController</servlet-class>
+        <servlet-class>project.controllers.DeleteDriverController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>deleteDrivers</servlet-name>
-        <url-pattern>/drivers/delete</url-pattern>
+        <url-pattern>/driver/delete</url-pattern>
     </servlet-mapping>
 
     <servlet>
         <servlet-name>deleteCars</servlet-name>
-        <servlet-class>project.controllers.DeleteCarsController</servlet-class>
+        <servlet-class>project.controllers.DeleteCarController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>deleteCars</servlet-name>
-        <url-pattern>/cars/delete</url-pattern>
+        <url-pattern>/car/delete</url-pattern>
     </servlet-mapping>
 </web-app>

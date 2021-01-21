@@ -6,19 +6,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import project.lib.Injector;
-import project.service.DriverService;
+import project.service.CarService;
 
-public class DeleteDriversController extends HttpServlet {
+public class DeleteCarController extends HttpServlet {
     private static final Injector injector = Injector.getInstance("project");
-    private final DriverService driverService = (DriverService)
-            injector.getInstance(DriverService.class);
+    private final CarService carService = (CarService)
+            injector.getInstance(CarService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        String driverId = req.getParameter("id");
-        Long id = Long.parseLong(driverId);
-        driverService.delete(id);
-        resp.sendRedirect(req.getContextPath() + "/drivers");
+        String carId = req.getParameter("id");
+        Long id = Long.parseLong(carId);
+        carService.delete(id);
+        resp.sendRedirect(req.getContextPath() + "/all");
     }
 }

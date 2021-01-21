@@ -9,7 +9,7 @@ import project.lib.Injector;
 import project.models.Driver;
 import project.service.DriverService;
 
-public class CreateDriversController extends HttpServlet {
+public class CreateDriverController extends HttpServlet {
     private static final Injector injector = Injector.getInstance("project");
     private final DriverService driverService = (DriverService)
             injector.getInstance(DriverService.class);
@@ -17,7 +17,7 @@ public class CreateDriversController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/views/createDrivers.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/views/driver/create.jsp").forward(req, resp);
     }
 
     @Override
@@ -29,6 +29,6 @@ public class CreateDriversController extends HttpServlet {
         driver.setName(name);
         driver.setLicenseNumber(licenseNumber);
         driverService.create(driver);
-        resp.sendRedirect(req.getContextPath() + "/drivers");
+        resp.sendRedirect(req.getContextPath() + "/all");
     }
 }

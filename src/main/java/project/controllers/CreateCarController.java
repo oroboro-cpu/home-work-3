@@ -11,7 +11,7 @@ import project.models.Manufacturer;
 import project.service.CarService;
 import project.service.ManufacturerService;
 
-public class CreateCarsController extends HttpServlet {
+public class CreateCarController extends HttpServlet {
     private static final Injector injector = Injector.getInstance("project");
     private final CarService carService = (CarService) injector.getInstance(CarService.class);
     private final ManufacturerService manufacturerService = (ManufacturerService)
@@ -20,7 +20,7 @@ public class CreateCarsController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/views/createCars.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/views/car/create.jsp").forward(req, resp);
     }
 
     @Override
@@ -33,6 +33,6 @@ public class CreateCarsController extends HttpServlet {
         car.setName(name);
         car.setManufacturer(manufacturer);
         carService.create(car);
-        resp.sendRedirect(req.getContextPath() + "/cars");
+        resp.sendRedirect(req.getContextPath() + "/all");
     }
 }

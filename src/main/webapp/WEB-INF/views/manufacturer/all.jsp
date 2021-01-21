@@ -24,11 +24,11 @@
                     <c:out value="${manufacturer.country}"/>
                 </td>
                 <td>
-                    <a href="${pageContext.request.contextPath}/manufacturers/delete?id=${manufacturer.id}">Delete</a>
+                    <a href="${pageContext.request.contextPath}/manufacturer/delete?id=${manufacturer.id}">Delete</a>
                 </td>
             </tr>
         </c:forEach>
     </table>
-    <a href="${pageContext.request.contextPath}/manufacturers/create">Create manufacturers</a>
+    <a href="${pageContext.request.contextPath}/manufacturer/create">Create manufacturers</a>
 </body>
 </html>

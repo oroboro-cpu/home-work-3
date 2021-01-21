@@ -9,7 +9,7 @@ import project.lib.Injector;
 import project.models.Manufacturer;
 import project.service.ManufacturerService;
 
-public class CreateManufacturersController extends HttpServlet {
+public class CreateManufacturerController extends HttpServlet {
     private static final Injector injector = Injector.getInstance("project");
     private final ManufacturerService manufacturerService = (ManufacturerService)
             injector.getInstance(ManufacturerService.class);
@@ -17,7 +17,7 @@ public class CreateManufacturersController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/views/createManufacturers.jsp")
+        req.getRequestDispatcher("/WEB-INF/views/manufacturer/create.jsp")
                 .forward(req, resp);
     }
 
@@ -30,6 +30,6 @@ public class CreateManufacturersController extends HttpServlet {
         manufacturer.setName(name);
         manufacturer.setCountry(country);
         manufacturerService.create(manufacturer);
-        resp.sendRedirect(req.getContextPath() + "/manufacturers");
+        resp.sendRedirect(req.getContextPath() + "/all");
     }
 }
