@@ -12,8 +12,8 @@ import project.models.Driver;
 import project.security.AuthenticationService;
 
 public class LoginController extends HttpServlet {
-    private static final String DRIVER_ID = "driver_id";
     public static final Injector injector = Injector.getInstance("project");
+    private static final String DRIVER_ID = "driver_id";
     private final AuthenticationService authenticationService = (AuthenticationService)
             injector.getInstance(AuthenticationService.class);
 
