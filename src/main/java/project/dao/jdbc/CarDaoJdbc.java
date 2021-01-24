@@ -194,6 +194,7 @@ public class CarDaoJdbc implements CarDao {
                 driver.setName(resultSet.getObject("name", String.class));
                 driver.setLicenseNumber(resultSet
                         .getObject("license_number", String.class));
+                driver.setLogin(resultSet.getObject("login", String.class));
                 drivers.add(driver);
             }
         } catch (SQLException ex) {

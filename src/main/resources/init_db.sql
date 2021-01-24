@@ -38,3 +38,8 @@ CREATE TABLE `taxi_service`.`cars_drivers` (
         REFERENCES `taxi_service`.`cars` (`id`)
         ON DELETE NO ACTION
         ON UPDATE NO ACTION);
+ALTER TABLE `taxi_service`.`drivers`
+    ADD COLUMN `login` VARCHAR(225) NOT NULL AFTER `deleted`,
+    ADD COLUMN `password` VARCHAR(225) NOT NULL AFTER `login`;
+ALTER TABLE `taxi_service`.`drivers`
+    CHANGE COLUMN `deleted` `deleted` TINYINT NOT NULL DEFAULT '0' AFTER `password`;
