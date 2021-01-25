@@ -1,5 +1,6 @@
 package project.security;
 
+import java.util.Optional;
 import project.exception.AuthenticationException;
 import project.lib.Inject;
 import project.lib.Service;
@@ -13,11 +14,10 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public Driver login(String login, String password) throws AuthenticationException {
-        Driver driverFromDB = driverService.findByLogin(login).orElseThrow(() ->
-                    new AuthenticationException("Invalid login or password!"));
-        if (driverFromDB.getPassword().equals(password)) {
-            return driverFromDB;
+        Optional<Driver> driver = driverService.findByLogin(login);
+        if (driver.isPresent() && driver.get().getPassword().equals(password)) {
+            return driver.get();
         }
-        throw new AuthenticationException("Invalid login or password!");
+        throw new AuthenticationException("Incorrect login or password");
     }
 }
