@@ -11,14 +11,9 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import project.lib.Injector;
-import project.service.DriverService;
 
 public class AuthenticationFilter implements Filter {
     private static final String DRIVER_ID = "driver_id";
-    private static final Injector injector = Injector.getInstance("project");
-    private final DriverService driverService =
-            (DriverService) injector.getInstance(DriverService.class);
     private Set<String> allowedUrls;
 
     @Override
