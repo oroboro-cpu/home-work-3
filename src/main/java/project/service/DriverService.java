@@ -1,6 +1,7 @@
 package project.service;
 
 import java.util.List;
+import java.util.Optional;
 import project.models.Driver;
 
 public interface DriverService {
@@ -13,4 +14,6 @@ public interface DriverService {
     Driver update(Driver driver);
 
     boolean delete(Long id);
+
+    Optional<Driver> findByLogin(String login);
 }

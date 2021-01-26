@@ -19,12 +19,14 @@ public class DriverDaoJdbc implements DriverDao {
     @Override
     public Driver create(Driver driver) {
         String createQuery = "INSERT INTO drivers (name, "
-                + "license_number) VALUES (?,?);";
+                + "license_number, login, password) VALUES (?,?,?,?);";
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection.prepareStatement(createQuery,
                         Statement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, driver.getName());
             statement.setString(2, driver.getLicenseNumber());
+            statement.setString(3, driver.getLogin());
+            statement.setString(4, driver.getPassword());
             statement.executeUpdate();
             ResultSet resultSet = statement.getGeneratedKeys();
             if (resultSet.next()) {
@@ -71,13 +73,15 @@ public class DriverDaoJdbc implements DriverDao {
 
     @Override
     public Driver update(Driver driver) {
-        String updateQuery = "UPDATE drivers SET name=?, license_number=?"
+        String updateQuery = "UPDATE drivers SET name=?, license_number=?, login=?, password=?"
                 + " WHERE id=? AND deleted=false;";
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement statement = connection.prepareStatement(updateQuery)) {
             statement.setString(1, driver.getName());
             statement.setString(2, driver.getLicenseNumber());
-            statement.setLong(3, driver.getId());
+            statement.setString(3, driver.getLogin());
+            statement.setString(4, driver.getPassword());
+            statement.setLong(5, driver.getId());
             statement.executeUpdate();
         } catch (SQLException ex) {
             throw new DataProcessingException("Can't update driver - " + driver, ex);
@@ -103,12 +107,33 @@ public class DriverDaoJdbc implements DriverDao {
         try {
             String name = resultSet.getString("name");
             String driverLicense = resultSet.getString("license_number");
+            String login = resultSet.getString("login");
+            String password = resultSet.getString("password");
             Long driverId = resultSet.getObject("id", Long.class);
             Driver driver = new Driver(name, driverLicense);
             driver.setId(driverId);
+            driver.setLogin(login);
+            driver.setPassword(password);
             return driver;
         } catch (SQLException ex) {
-            throw new DataProcessingException(" Can't create new driver", ex);
+            throw new DataProcessingException("Can't create new driver", ex);
         }
+    }
+
+    @Override
+    public Optional<Driver> getByLogin(String login) {
+        String getQuery = "SELECT * FROM drivers WHERE login=? AND deleted=false;";
+        Driver driver = null;
+        try (Connection connection = ConnectionUtil.getConnection();
+                PreparedStatement statement = connection.prepareStatement(getQuery)) {
+            statement.setString(1, login);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                driver = createDriver(resultSet);
+            }
+        } catch (SQLException ex) {
+            throw new DataProcessingException("Can't find driver from DB by login: " + login, ex);
+        }
+        return Optional.ofNullable(driver);
     }
 }

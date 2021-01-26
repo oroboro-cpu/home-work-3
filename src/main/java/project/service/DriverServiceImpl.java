@@ -1,6 +1,7 @@
 package project.service;
 
 import java.util.List;
+import java.util.Optional;
 import project.dao.DriverDao;
 import project.lib.Inject;
 import project.lib.Service;
@@ -34,5 +35,10 @@ public class DriverServiceImpl implements DriverService {
     @Override
     public boolean delete(Long id) {
         return driverDao.delete(id);
+    }
+
+    @Override
+    public Optional<Driver> findByLogin(String login) {
+        return driverDao.getByLogin(login);
     }
 }
